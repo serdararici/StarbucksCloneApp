@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:starbucks_clone_app/CarouselWithDots.dart';
-import 'package:starbucks_clone_app/views/home_page/listViewBrandCollaborations.dart';
-import 'package:starbucks_clone_app/views/home_page/listViewCampaigns.dart';
+import 'package:starbucks_clone_app/ui/views/home_page/listViewBrandCollaborations.dart';
+import 'package:starbucks_clone_app/ui/views/home_page/listViewCampaigns.dart';
 import 'package:starbucks_clone_app/constants/colors.dart';
-import 'package:starbucks_clone_app/views/home_page/listViewSocialResponsibility.dart';
-import 'package:starbucks_clone_app/views/home_page/semiCircularChart.dart';
+import 'package:starbucks_clone_app/ui/views/home_page/listViewSocialResponsibility.dart';
+import 'package:starbucks_clone_app/ui/views/home_page/semiCircularChart.dart';
 
 class Homepage extends StatefulWidget {
   @override

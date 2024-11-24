@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/colors.dart';
+import '../../../constants/colors.dart';
 
-class ListViewCampaigns extends StatefulWidget {
+class ListViewBrandCollaborations extends StatefulWidget {
   @override
-  _ListViewCampaignsState createState() =>
-      _ListViewCampaignsState();
+  _ListViewBrandCollaborationsState createState() =>
+      _ListViewBrandCollaborationsState();
 }
 
-class _ListViewCampaignsState extends State<ListViewCampaigns> {
+class _ListViewBrandCollaborationsState extends State<ListViewBrandCollaborations> {
   final ScrollController _scrollController = ScrollController();
   int _currentPage = 0;
   final double _itemWidth = 350;
   final double _separatorWidth = 10;
-  final int _visibleDots = 5; // Merkezde aynı anda görünen normal boyutlu noktalar
+  final int _itemCount = 10; // Örnek: item sayısını burada belirtiyoruz
+  late int _visibleDots;  // _visibleDots başlangıçta null olacak
 
   @override
   void initState() {
@@ -25,6 +26,9 @@ class _ListViewCampaignsState extends State<ListViewCampaigns> {
         _currentPage = (offset / totalItemWidth).round();
       });
     });
+
+    // _visibleDots değerini burada hesaplıyoruz
+    _visibleDots = _itemCount > 5 ? 5 : _itemCount;
   }
 
   @override
@@ -38,7 +42,7 @@ class _ListViewCampaignsState extends State<ListViewCampaigns> {
             controller: _scrollController,
             scrollDirection: Axis.horizontal,
             separatorBuilder: (context, index) => const SizedBox(width: 10),
-            itemCount: 10,
+            itemCount: _itemCount,
             itemBuilder: (context, index) {
               return Container(
                 width: _itemWidth,
@@ -61,7 +65,7 @@ class _ListViewCampaignsState extends State<ListViewCampaigns> {
         // Dots
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(10, (index) {
+          children: List.generate(_itemCount, (index) {
             // Boyut hesaplama
             int middleStart = _currentPage - (_visibleDots ~/ 2);
             int middleEnd = _currentPage + (_visibleDots ~/ 2);

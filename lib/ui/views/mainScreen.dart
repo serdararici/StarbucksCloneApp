@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:starbucks_clone_app/constants/colors.dart';
-import 'package:starbucks_clone_app/views/gift_page/giftPage.dart';
-import 'package:starbucks_clone_app/views/home_page/homePage.dart';
-import 'package:starbucks_clone_app/views/menu_page/menuPage.dart';
-import 'package:starbucks_clone_app/views/stores_page/storesPage.dart';
+import 'package:starbucks_clone_app/ui/views/gift_page/giftPage.dart';
+import 'package:starbucks_clone_app/ui/views/home_page/homePage.dart';
+import 'package:starbucks_clone_app/ui/views/menu_page/menuPage.dart';
+import 'package:starbucks_clone_app/ui/views/stores_page/storesPage.dart';
 
 class MainScreen extends StatefulWidget {
   @override

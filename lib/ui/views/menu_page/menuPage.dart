@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:starbucks_clone_app/constants/colors.dart';
-import 'package:starbucks_clone_app/views/menu_page/menuAllPage.dart';
-import 'package:starbucks_clone_app/views/menu_page/menuFavoritesPage.dart';
-import 'package:starbucks_clone_app/views/menu_page/menuFeaturedPage.dart';
-import 'package:starbucks_clone_app/views/menu_page/menuOrderPage.dart';
+import 'package:starbucks_clone_app/ui/views/menu_page/menuAllPage.dart';
+import 'package:starbucks_clone_app/ui/views/menu_page/menuFavoritesPage.dart';
+import 'package:starbucks_clone_app/ui/views/menu_page/menuFeaturedPage.dart';
+import 'package:starbucks_clone_app/ui/views/menu_page/menuOrderPage.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -84,8 +84,8 @@ class _MenuPageState extends State<MenuPage> {
         "Menu",
         style: TextStyle(
           color: Colors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.w300,
+          fontSize: 18 ,
+          fontWeight: FontWeight.w400,
         ),
       ),
       actions: [

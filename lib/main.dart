@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:starbucks_clone_app/views/home_page/homePage.dart';
-import 'package:starbucks_clone_app/views/mainScreen.dart';
+import 'package:starbucks_clone_app/ui/views/home_page/homePage.dart';
+import 'package:starbucks_clone_app/ui/views/mainScreen.dart';
 
 void main() {
   runApp(const MyApp());
