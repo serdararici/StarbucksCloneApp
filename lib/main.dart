@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:starbucks_clone_app/homePage.dart';
+import 'package:starbucks_clone_app/views/home_page/homePage.dart';
+import 'package:starbucks_clone_app/views/mainScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Homepage(),
+      home: MainScreen(),
     );
   }
 }
