@@ -4,6 +4,7 @@ import 'package:starbucks_clone_app/ui/views/menu_page/menuAllPage.dart';
 import 'package:starbucks_clone_app/ui/views/menu_page/menuFavoritesPage.dart';
 import 'package:starbucks_clone_app/ui/views/menu_page/menuFeaturedPage.dart';
 import 'package:starbucks_clone_app/ui/views/menu_page/menuOrderPage.dart';
+import 'package:starbucks_clone_app/ui/views/settings_page/settings_page.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -90,7 +91,13 @@ class _MenuPageState extends State<MenuPage> {
       ),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+              MaterialPageRoute(
+                builder: (context) => SettingsPage(),
+              ),
+            );
+          },
           icon: Icon(
             Icons.person_2_outlined,
             color: Colors.white,

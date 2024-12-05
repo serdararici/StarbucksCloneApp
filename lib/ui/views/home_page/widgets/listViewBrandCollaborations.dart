@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/colors.dart';
+import '../../../../constants/colors.dart';
 
-
-class ListViewSocialResponsibility extends StatefulWidget {
+class ListViewBrandCollaborations extends StatefulWidget {
   @override
-  _ListViewSocialResponsibilityState createState() =>
-      _ListViewSocialResponsibilityState();
+  _ListViewBrandCollaborationsState createState() =>
+      _ListViewBrandCollaborationsState();
 }
 
-class _ListViewSocialResponsibilityState extends State<ListViewSocialResponsibility> {
+class _ListViewBrandCollaborationsState extends State<ListViewBrandCollaborations> {
   final ScrollController _scrollController = ScrollController();
   int _currentPage = 0;
   final double _itemWidth = 350;

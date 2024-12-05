@@ -95,10 +95,6 @@ class DynamicGridView extends StatelessWidget {
         itemCount: menuItems.length, // Kaç adet öğe göstereceğimiz
         itemBuilder: (context, index) {
           Menu menu = menuItems[index];
-          print(menu.name);
-          print(menu.category);
-          print(menu.subCategory);
-          print(menu.iconPath);
           return Container(
             width: itemSize, // Sabit genişlik
             height: itemSize, // Sabit yükseklik

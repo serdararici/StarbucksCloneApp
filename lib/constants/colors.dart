@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 class AColors{
   AColors._();
 
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color black = Color(0xFF000000);
+
   static const Color primaryGreen = Color(0xFF00704A);  //#006241   //0xFF308B64  //#00704A
   static const Color secondaryGreen = Color(0xFF32A65A);
   static const Color darkGreen = Color(0xFF1E3932);   //0xFF1E3932  //0xFF1B724D

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:starbucks_clone_app/CarouselWithDots.dart';
-import 'package:starbucks_clone_app/ui/views/home_page/listViewBrandCollaborations.dart';
-import 'package:starbucks_clone_app/ui/views/home_page/listViewCampaigns.dart';
+import 'package:starbucks_clone_app/ui/views/home_page/widgets/listViewBrandCollaborations.dart';
 import 'package:starbucks_clone_app/constants/colors.dart';
-import 'package:starbucks_clone_app/ui/views/home_page/listViewSocialResponsibility.dart';
-import 'package:starbucks_clone_app/ui/views/home_page/semiCircularChart.dart';
+import 'package:starbucks_clone_app/ui/views/home_page/widgets/listViewCampaigns.dart';
+import 'package:starbucks_clone_app/ui/views/home_page/widgets/listViewSocialResponsibility.dart';
+import 'package:starbucks_clone_app/ui/views/home_page/widgets/semiCircularChart.dart';
+
+import '../settings_page/settings_page.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -503,7 +505,11 @@ class _HomepageState extends State<Homepage> {
             ),
             IconButton(
                 onPressed: (){
-
+                  Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context) => SettingsPage(),
+                    ),
+                  );
                 },
                 icon: Icon(Icons.person_2_outlined,color: Colors.white,)
             ),
