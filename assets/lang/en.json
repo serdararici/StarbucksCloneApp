@@ -1,5 +1,17 @@
 
 {
+
+  "signIn": "Sign In",
+  "register": "Register",
+  "loginInformation": "Login Information",
+  "phoneNumber": "Phone Number",
+  "example": "Example",
+  "email": "Email",
+  "password": "Password",
+  "forgetPassword": "Forget Password!",
+  "notMember": "Not a member yet?",
+  "joinNow": "Join Now",
+
   "settings": "Settings",
   "languageSettings": "Language Settings",
   "selectLanguage": "Select language",

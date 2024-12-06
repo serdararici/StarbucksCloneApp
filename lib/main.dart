@@ -1,13 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:starbucks_clone_app/core/theme/theme_manager.dart';
+import 'package:starbucks_clone_app/ui/views/authantication/auth_gate.dart';
+import 'package:starbucks_clone_app/ui/views/authantication/login_page.dart';
 import 'package:starbucks_clone_app/ui/views/home_page/homePage.dart';
 import 'package:starbucks_clone_app/ui/views/mainScreen.dart';
 
 import 'core/localization/localization_manager.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -43,7 +48,7 @@ class MyApp extends StatelessWidget {
             Locale('es'),
             Locale('ja'),
           ],
-          home: MainScreen(),
+          home: AuthGate(),
         );
       }
     )

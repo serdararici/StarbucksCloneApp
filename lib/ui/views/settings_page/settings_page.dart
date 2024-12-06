@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:starbucks_clone_app/core/localization/localization_manager.dart';
 import 'package:starbucks_clone_app/core/theme/theme_manager.dart';
+import 'package:starbucks_clone_app/ui/views/authantication/login_page.dart';
 import 'package:starbucks_clone_app/ui/views/settings_page/language_page.dart';
 
 import '../../../constants/colors.dart';
+import '../../../models/authentication_model.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -18,6 +20,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     final themeManager = Provider.of<ThemeManager>(context);
     final localeManager = Provider.of<LocaleManager>(context);
+    final AuthenticationModel _authModel = AuthenticationModel();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -94,7 +97,19 @@ class _SettingsPageState extends State<SettingsPage> {
               SizedBox(height: 24,),
               Container(
                 width: MediaQuery.of(context).size.width,
-                child: ElevatedButton(onPressed: (){},
+                child: ElevatedButton(onPressed: () async {
+                  try {
+                    await _authModel.signOut(); // Firebase çıkışı
+                    Navigator.pushAndRemoveUntil(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                          (Route<dynamic> route) => false,
+                    );
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Error signing out: $e")),
+                    );
+                  }
+                },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AColors.secondaryGreen),
                   child: Text("SIGN OUT",style: TextStyle(
@@ -121,12 +136,14 @@ class _SettingsPageState extends State<SettingsPage> {
 }
 
 class SettingsProfileWidget extends StatelessWidget {
+
   const SettingsProfileWidget({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    final AuthenticationModel _authModel = AuthenticationModel();
     return Container(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -166,7 +183,7 @@ class SettingsProfileWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 2,),
-              Text("serdararici3@gmail.com",
+              Text("${_authModel.currentUser?.email}",
                 style: TextStyle(
                   fontSize: 14,
                   color: AColors.black,
