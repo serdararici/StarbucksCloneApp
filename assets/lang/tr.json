@@ -1,10 +1,24 @@
 {
-
+  "send": "Gönder",
   "signIn": "Giriş Yap",
-
+  "register": "Kayıt Ol",
+  "loginInformation": "Giriş Bilgileri",
+  "phoneNumber": "Telefon Numarası",
+  "example": "Örnek",
+  "email": "E-posta",
+  "password": "Şifre",
+  "forgetPassword!": "Şifrenizi mi Unuttunuz!",
+  "notMember": "Henüz üye değil misiniz?",
+  "verifyYourEmail": "Lütfen e-posta adresinizi doğrulayın.",
+  "joinNow": "Hemen Katıl",
+  "registerSuccess": "Kayıt Başarılı! Lütfen gelen onay e-postasına tıklayın.",
+  "forgetPassword": "Şifremi Unuttum",
+  "enterYourMail": "Lütfen şifre sıfırlama linkini almak için e-posta adresinizi girin.",
+  "resetLinkSent": "Şifre sıfırlama linki e-posta adresinize gönderildi. Lütfen gelen kutunuzu (veya spam klasörünüzü) kontrol edin.",
   "settings": "Ayarlar",
   "languageSettings": "Dil Ayarları",
-  "selectLanguage": "Dil seç",
-  "selectLanguageMassage": "Aşağıdan tercihinize göre dili seçin.",
-  "signOut": "Çıkış Yap"
+  "selectLanguage": "Dil Seç",
+  "selectLanguageMassage": "Açılır menüden tercih ettiğiniz dili seçin.",
+  "signOut": "ÇIKIŞ YAP"
 }
+

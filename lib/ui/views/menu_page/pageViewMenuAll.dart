@@ -47,9 +47,11 @@ class _PageViewMenuAllState extends State<PageViewMenuAll> {
                   borderRadius: BorderRadius.circular(0),
                 ),
                 child: Center(
-                  child: Text(
-                    "Item ${index + 1}",
-                    style: const TextStyle(color: Colors.white),
+                  child: Image.asset(
+                    "assets/images/menu1.JPG",
+                    fit: BoxFit.fill,
+                    width: double.infinity,
+                    height: double.infinity,
                   ),
                 ),
               );

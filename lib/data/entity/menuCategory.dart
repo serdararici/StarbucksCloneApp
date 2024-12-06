@@ -9,15 +9,15 @@ class MenuCategory {
     required this.categoryId,
     required this.categoryName,
     required this.type,
-    this.categoryIconPath = '',
+    this.categoryIconPath = "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Fresh-Brewed-Coffee---Feb-2023.jpeg",
   });
 }
 
 List<MenuCategory> categories = [
   // Drinks kategorileri
-  MenuCategory(categoryId: "1", categoryName: "Seasonal Drinks", type: "drinks"),
-  MenuCategory(categoryId: "2", categoryName: "Espresso Drinks", type: "drinks"),
-  MenuCategory(categoryId: "3", categoryName: "Filter Coffee", type: "drinks"),
+  MenuCategory(categoryId: "1", categoryName: "Seasonal Drinks", type: "drinks", categoryIconPath: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVP1HMTY3QYlHsVxgSSMgFwYPbBaAu6RgBSg&s"),
+  MenuCategory(categoryId: "2", categoryName: "Espresso Drinks", type: "drinks", categoryIconPath: "https://globalassets.starbucks.com/digitalassets/products/bev/SBX20190617_CaffeLatte.jpg?impolicy=1by1_wide_topcrop_630"),
+  MenuCategory(categoryId: "3", categoryName: "Filter Coffee", type: "drinks", categoryIconPath: "https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Fresh-Brewed-Coffee---Feb-2023.jpeg"),
   MenuCategory(categoryId: "4", categoryName: "Starbucks Refresha® Drinks", type: "drinks"),
   MenuCategory(categoryId: "5", categoryName: "Frappuccino® Blend Beverages", type: "drinks"),
   MenuCategory(categoryId: "6", categoryName: "Ice Cream Drinks", type: "drinks"),

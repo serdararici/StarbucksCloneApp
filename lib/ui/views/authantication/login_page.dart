@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:starbucks_clone_app/constants/colors.dart';
 import 'package:starbucks_clone_app/models/authentication_model.dart';
+import 'package:starbucks_clone_app/ui/views/authantication/forget_password_page.dart';
 import 'package:starbucks_clone_app/ui/views/authantication/register_page.dart';
 import 'package:starbucks_clone_app/ui/views/mainScreen.dart';
 
@@ -21,12 +22,22 @@ class _LoginPageState extends State<LoginPage> {
   bool isPasswordVisible = false;
 
   Future<void> _login() async{
+
     try{
-      await _authModel.loginWithEmailAndPassword(emailController.text, passwordController.text);
-      Navigator.pushAndRemoveUntil(context,
-        MaterialPageRoute(builder: (context) => MainScreen()),
-            (Route<dynamic> route) => false,
-      );
+      final localeManager = Provider.of<LocaleManager>(context, listen: false);
+      final user = await _authModel.loginWithEmailAndPassword(emailController.text, passwordController.text);
+      //Kullanıcı dğrulanmış mı ?
+      if(user != null && !user.emailVerified){
+        await user.sendEmailVerification();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(localeManager.translate("verifyYourEmail"))),
+        );
+        await _authModel.signOut();
+      }else if(user != null){
+        Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => MainScreen()),
+        );
+      }
     }catch(e){
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.toString())),
@@ -130,10 +141,11 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(height: 32),
                       GestureDetector(
                         onTap: () {
-                          // Şifremi Unuttum sayfasına yönlendirme işlemi
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => ForgetPasswordPage()));
                         },
                         child: Text(
-                          localeManager.translate("forgetPassword"),
+                          localeManager.translate("forgetPassword!"),
                           style: TextStyle(
                             color: AColors.secondaryGreen,
                             fontWeight: FontWeight.w600,

@@ -160,7 +160,7 @@ class CategoryListWidget extends StatelessWidget {
                   backgroundColor: AColors.darkGreen, // Dairenin arka plan rengi
                   child: ClipOval(
                     child: Image.network(
-                      'https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/Fresh-Brewed-Coffee---Feb-2023.jpeg', // Görsel URL'si
+                      category.categoryIconPath, // Görsel URL'si
                       fit: BoxFit.cover,
                       width: 40, // Resmin genişliği
                       height: 40, // Resmin yüksekliği

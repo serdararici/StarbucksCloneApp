@@ -1,6 +1,7 @@
 
 {
 
+  "send": "Send",
   "signIn": "Sign In",
   "register": "Register",
   "loginInformation": "Login Information",
@@ -8,9 +9,14 @@
   "example": "Example",
   "email": "Email",
   "password": "Password",
-  "forgetPassword": "Forget Password!",
+  "forgetPassword!": "Forget Password!",
   "notMember": "Not a member yet?",
+  "verifyYourEmail": "Please verify your email.",
   "joinNow": "Join Now",
+  "registerSuccess": "Registration Successful! Please click on the confirmation email sent to your inbox",
+  "forgetPassword": "Forget Password",
+  "enterYourMail": "Please enter your email address to receive a password reset link.",
+  "resetLinkSent": "A password reset link has been sent to your email address. Please check your inbox (and spam folder) to reset your password.",
 
   "settings": "Settings",
   "languageSettings": "Language Settings",

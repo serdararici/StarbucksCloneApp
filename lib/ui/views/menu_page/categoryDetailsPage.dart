@@ -17,17 +17,37 @@ class CategoryDetailsPage extends StatefulWidget {
 }
 
 class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
+
   @override
   Widget build(BuildContext context) {
 
+    /*
     // Kategoriye göre filtreleme işlemi
     List<Menu> filteredMenu = menuItems
         .where((menu) => menu.category == widget.category.categoryName)
         .toList();
+
+     */
     return Scaffold(
       appBar: _appBar(context),
       backgroundColor: Colors.white,
-      body: DynamicGridView(menuItems: filteredMenu),
+      //body: DynamicGridView(menuItems: filteredMenu),
+      body: FutureBuilder<List<Menu>>(
+        future: getMenuItemsByCategory(widget.category.categoryName), // Firestore'dan veriyi çeken fonksiyon
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator()); // Yükleniyor animasyonu
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}')); // Hata durumu
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text('No menu items found.')); // Veri yok durumu
+          } else {
+            // Veri mevcut, listeyi göster
+            List<Menu> menuItems = snapshot.data!;
+            return DynamicGridView(menuItems: menuItems);
+          }
+        },
+      ),
     );
   }
 
@@ -79,7 +99,7 @@ class DynamicGridView extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
 
     // Sabit bir öğe boyutu belirliyoruz
-    double itemSize = 200.0;
+    double itemSize = 180.0;
 
     // Satırda kaç öğe olacağını hesaplıyoruz
     int crossAxisCount = (screenWidth / itemSize).floor();
@@ -89,8 +109,8 @@ class DynamicGridView extends StatelessWidget {
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount, // Dinamik olarak hesaplanan öğe sayısı
-          crossAxisSpacing: 0.0, // Itemlar arasındaki yatay boşluk
-          mainAxisSpacing: 30.0, // Itemlar arasındaki dikey boşluk
+          crossAxisSpacing: 20.0, // Itemlar arasındaki yatay boşluk
+          mainAxisSpacing: 40.0, // Itemlar arasındaki dikey boşluk
         ),
         itemCount: menuItems.length, // Kaç adet öğe göstereceğimiz
         itemBuilder: (context, index) {
@@ -116,11 +136,14 @@ class DynamicGridView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 5,),
-                Text(menu.name,
+                Text(
+                  menu.name,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
                   ),
+                  overflow: TextOverflow.ellipsis,  // Üç nokta ekler
+                  maxLines: 1,  // Metin tek satıra sığacak şekilde ayarlanır
                 ),
               ],
             ),

@@ -16,6 +16,13 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
+    List<Map<String, String>> items = [
+      {'title': 'Toffee \n Nut Latte', 'iconPath': 'https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/SBX-MOP-1500x1500-Toffee-Nut-Latte.jpeg'},
+      {'title': 'Toffee Nut \n Cream Cold \n Brew', 'iconPath': 'https://www.starbucks.co.uk/_next/image?url=https%3A%2F%2Fwww.digitalassets.starbucks.eu%2Fsites%2Fstarbucks-medialibrary%2Ffiles%2FToffee-Nut-Cream-Cold-Brew-.jpeg&w=3840&q=75'},
+      {'title': 'Toffee Nut \n Frappuccino', 'iconPath': 'https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/SBX-MOP-1500x1500-Toffee-Nut-Frappuccino.jpeg'},
+      {'title': 'Gingerbread \n Latte', 'iconPath': 'https://globalassets.starbucks.com/digitalassets/products/bev/GingerbreadLatte.jpg?impolicy=1by1_wide_topcrop_630'},
+      {'title': 'Gingerbread \n Frappuccino', 'iconPath': 'https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/SBX-MOP-1500x1500-Gingerbread-Frappuccino.jpeg'},
+    ];
     return Scaffold(
       extendBodyBehindAppBar: true, // AppBar'ın body'si üzerinde olmasını sağlar
       appBar: _AppBar(), ///
@@ -61,24 +68,35 @@ class _HomepageState extends State<Homepage> {
                             height: 150,
                             child: ListView.separated(
                               scrollDirection: Axis.horizontal, // Yatay kaydırma yönü
-                              itemCount: 10, // Toplam eleman sayısı
+                              itemCount: items.length, // Liste uzunluğu kadar eleman
                               separatorBuilder: (context, index) => const SizedBox(width: 10,),
                               itemBuilder: (context, index) {
+                                // item listesindeki her bir elemanı işliyoruz
+                                var item = items[index];
                                 return Column(
                                   children: [
                                     ClipOval(
                                       child: Container(
                                         width: 80,
-                                        height: 85,
-                                        color: AColors.darkGreen,
+                                        height: 80,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: NetworkImage(item['iconPath']!), // Resim yolu
+                                            fit: BoxFit.cover, // Görüntü dolgusunu sağlıyoruz
+                                          ),
+                                          color: AColors.darkGreen, // Yedek bir renk
+                                        ),
                                       ),
                                     ),
                                     SizedBox(height: 8),
                                     Text(
-                                      'Item ${index + 1}', // Yazı
+                                      item['title']!, // title'ı burada yazıyoruz
                                       style: TextStyle(
-                                        fontSize: 14,
+                                        fontSize: 12,
                                       ),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 3,
+                                      textAlign: TextAlign.center,
                                     ),
                                   ],
                                 );

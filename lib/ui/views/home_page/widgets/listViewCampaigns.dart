@@ -48,13 +48,15 @@ class _ListViewCampaignsState extends State<ListViewCampaigns> {
               return Container(
                 width: _itemWidth,
                 decoration: BoxDecoration(
-                  color: AColors.darkGreen,
+                  color: Colors.transparent,
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Center(
-                  child: Text(
-                    "Item ${index + 1}",
-                    style: const TextStyle(color: Colors.white),
+                  child: Image.asset(
+                    "assets/images/campaignsImg1.JPG",
+                    fit: BoxFit.cover,
+                    //width: double.infinity,
+                    //height: double.infinity,
                   ),
                 ),
               );

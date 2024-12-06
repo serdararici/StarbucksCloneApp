@@ -13,13 +13,14 @@ class RegisterPage extends StatefulWidget{
 
 class _RegisterPageState extends State<RegisterPage>{
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool isPasswordVisible = false;
 
   Future _register() async{
     try{
+      final localeManager = Provider.of<LocaleManager>(context, listen: false);
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
@@ -27,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage>{
       if(userCredential.user != null && !userCredential.user!.emailVerified){
         await userCredential.user!.sendEmailVerification();
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Kayıt Başarılı! Lütfen e-postanıza gelen onay mailine tıklayın.'))
+            SnackBar(content: Text(localeManager.translate("registerSuccess")))
         );
       }
     }catch(e){
