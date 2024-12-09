@@ -165,8 +165,8 @@ class CategoryListWidget extends StatelessWidget {
                     child: Image.network(
                       category.categoryIconPath, // Görsel URL'si
                       fit: BoxFit.cover,
-                      width: 40, // Resmin genişliği
-                      height: 40, // Resmin yüksekliği
+                      width: double.infinity, // Resmin genişliği
+                      height: double.infinity, // Resmin yüksekliği
                     ),
                   ),
                 ),

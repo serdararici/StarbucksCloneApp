@@ -197,7 +197,8 @@ class _HomepageState extends State<Homepage> {
             ),
             SizedBox(height: 15,),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Column(
                   children: [
@@ -230,6 +231,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ],
                 ),
+                SizedBox(width: 15,),
                 Column(
                   children: [
                     ClipOval(
@@ -261,6 +263,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ],
                 ),
+                SizedBox(width: 15,),
                 Column(
                   children: [
                     ClipOval(
@@ -290,6 +293,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ],
                 ),
+                SizedBox(width: 15,),
                 Column(
                   children: [
                     ClipOval(

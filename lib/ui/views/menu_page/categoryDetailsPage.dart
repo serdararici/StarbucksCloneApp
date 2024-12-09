@@ -91,58 +91,69 @@ class DynamicGridView extends StatelessWidget {
     // Ekran genişliğini alıyoruz
     double screenWidth = MediaQuery.of(context).size.width;
 
+    // Dinamik olarak sütun sayısını belirliyoruz
+    int crossAxisCount = screenWidth > 600 ? 3 : 2;
+
+    // Her bir öğenin boyutunu hesaplıyoruz
+    double itemSize = (screenWidth - (40 * (crossAxisCount - 1))) / crossAxisCount;
+
+    //////////////////
+    /*
+    // Ekran genişliğini alıyoruz
+    double screenWidth = MediaQuery.of(context).size.width;
+
     // Sabit bir öğe boyutu belirliyoruz
     double itemSize = 180.0;
 
     // Satırda kaç öğe olacağını hesaplıyoruz
     int crossAxisCount = (screenWidth / itemSize).floor();
 
+     */
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
       child: GridView.builder(
+        shrinkWrap: true, // GridView'ın boyutunu içeriğe göre ayarlamak için
+        physics: const NeverScrollableScrollPhysics(), // Ana sayfa içinde kaydırmayı devre dışı bırakmak için
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount, // Dinamik olarak hesaplanan öğe sayısı
-          crossAxisSpacing: 20.0, // Itemlar arasındaki yatay boşluk
-          mainAxisSpacing: 40.0, // Itemlar arasındaki dikey boşluk
+          crossAxisCount: crossAxisCount, // Dinamik sütun sayısı
+          crossAxisSpacing: 16.0, // Yatay boşluk
+          mainAxisSpacing: 16.0, // Dikey boşluk
         ),
-        itemCount: menuItems.length, // Kaç adet öğe göstereceğimiz
+        itemCount: menuItems.length, // Öğe sayısı
         itemBuilder: (context, index) {
           Menu menu = menuItems[index];
-          return Container(
-            width: itemSize, // Sabit genişlik
-            height: itemSize, // Sabit yükseklik
-            color: Colors.white,
-            child: Column(
-              children: [
-                Container(
-                  width: itemSize - itemSize/5,
-                  height: itemSize - itemSize/5,
-                  decoration: BoxDecoration(
-                    color: AColors.primaryGreen, // Yeşil renk
-                    shape: BoxShape.circle, // Yuvarlak şekil
-                  ),
-                  child: ClipOval(
-                    child: Image.network(
-                      menu.iconPath, // Görsel URL'si
-                      fit: BoxFit.cover, // Görseli kaplamak için
-                    ),
+          return Column(
+            children: [
+              Container(
+                width: itemSize - itemSize / 5,
+                height: itemSize - itemSize / 5,
+                decoration: BoxDecoration(
+                  color: AColors.primaryGreen, // Yeşil renk
+                  shape: BoxShape.circle, // Yuvarlak şekil
+                ),
+                child: ClipOval(
+                  child: Image.network(
+                    menu.iconPath, // Görsel URL'si
+                    fit: BoxFit.cover, // Görseli kaplamak için
                   ),
                 ),
-                SizedBox(height: 5,),
-                Text(
-                  menu.name,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                  ),
-                  overflow: TextOverflow.ellipsis,  // Üç nokta ekler
-                  maxLines: 1,  // Metin tek satıra sığacak şekilde ayarlanır
+              ),
+              const SizedBox(height: 5),
+              Text(
+                menu.name,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
                 ),
-              ],
-            ),
+                overflow: TextOverflow.ellipsis, // Uzun metni üç nokta ile kesmek için
+                maxLines: 1, // Maksimum bir satır göster
+              ),
+            ],
           );
         },
       ),
     );
+
   }
 }
