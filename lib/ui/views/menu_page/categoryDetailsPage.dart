@@ -21,13 +21,6 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
   @override
   Widget build(BuildContext context) {
 
-    /*
-    // Kategoriye göre filtreleme işlemi
-    List<Menu> filteredMenu = menuItems
-        .where((menu) => menu.category == widget.category.categoryName)
-        .toList();
-
-     */
     return Scaffold(
       appBar: _appBar(context),
       backgroundColor: Colors.white,

@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:starbucks_clone_app/data/entity/brandCollaborations.dart';
 
 import '../../../../constants/colors.dart';
 
 class ListViewBrandCollaborations extends StatefulWidget {
+  final List<BrandCollaborations> brandCollaborationsItems;
+
+  const ListViewBrandCollaborations({
+    Key? key,
+    required this.brandCollaborationsItems,
+  }) : super(key: key);
+
   @override
   _ListViewBrandCollaborationsState createState() =>
-      _ListViewBrandCollaborationsState();
+      _ListViewBrandCollaborationsState(brandCollaborationsItems: brandCollaborationsItems);
 }
 
 class _ListViewBrandCollaborationsState extends State<ListViewBrandCollaborations> {
   final ScrollController _scrollController = ScrollController();
+  final List<BrandCollaborations> brandCollaborationsItems;
   int _currentPage = 0;
   final double _itemWidth = 350;
   final double _separatorWidth = 10;
-  final int _itemCount = 10; // Örnek: item sayısını burada belirtiyoruz
-  late int _visibleDots;  // _visibleDots başlangıçta null olacak
+  late int _visibleDots;
+
+  _ListViewBrandCollaborationsState({required this.brandCollaborationsItems});
 
   @override
   void initState() {
@@ -27,33 +37,50 @@ class _ListViewBrandCollaborationsState extends State<ListViewBrandCollaboration
       });
     });
 
-    // _visibleDots değerini burada hesaplıyoruz
-    _visibleDots = _itemCount > 5 ? 5 : _itemCount;
+    _visibleDots = brandCollaborationsItems.length > 5
+        ? 5
+        : brandCollaborationsItems.length;
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // ListView
+        // Marka İşbirlikleri Listesi
         Container(
           height: 350,
           child: ListView.separated(
             controller: _scrollController,
             scrollDirection: Axis.horizontal,
             separatorBuilder: (context, index) => const SizedBox(width: 10),
-            itemCount: _itemCount,
+            itemCount: brandCollaborationsItems.length,
             itemBuilder: (context, index) {
+              final brandCollaboration = brandCollaborationsItems[index];
               return Container(
                 width: _itemWidth,
                 decoration: BoxDecoration(
-                  color: AColors.darkGreen,
+                  color: Colors.transparent,
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Center(
-                  child: Text(
-                    "Item ${index + 1}",
-                    style: const TextStyle(color: Colors.white),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.network(
+                    brandCollaboration.iconPath, // Verilerden gelen görsel URL'si
+                    fit: BoxFit.cover,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                              (loadingProgress.expectedTotalBytes ?? 1)
+                              : null,
+                        ),
+                      );
+                    },
+                    errorBuilder: (context, error, stackTrace) => const Center(
+                      child: Icon(Icons.error, size: 50, color: Colors.red),
+                    ),
                   ),
                 ),
               );
@@ -65,16 +92,14 @@ class _ListViewBrandCollaborationsState extends State<ListViewBrandCollaboration
         // Dots
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(_itemCount, (index) {
-            // Boyut hesaplama
+          children: List.generate(brandCollaborationsItems.length, (index) {
             int middleStart = _currentPage - (_visibleDots ~/ 2);
             int middleEnd = _currentPage + (_visibleDots ~/ 2);
 
             double size;
             if (index >= middleStart && index <= middleEnd) {
-              size = 8.0; // Normal boyutlu nokta
+              size = 8.0;
             } else {
-              // Görünmeyen noktalar küçülerek animasyonlanır
               int distance = (index - _currentPage).abs();
               size = 12.0 - (distance * 3.0).clamp(4.0, 6.0);
             }

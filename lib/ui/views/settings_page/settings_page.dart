@@ -51,48 +51,48 @@ class _SettingsPageState extends State<SettingsPage> {
             children: [
               SettingsProfileWidget(),
               SizedBox(height: 24,),
-              SettingsTitleRow(title: "My Account"),
-              SettingsRowWidget(title: "Account Settings", icon: Icon(Icons.person_2_outlined),targetPage: LanguagePage()),
+              SettingsTitleRow(title: localeManager.translate("myAccount")),
+              SettingsRowWidget(title: localeManager.translate("accountSettings"), icon: Icon(Icons.person_2_outlined),targetPage: LanguagePage()),
               Divider(color: AColors.mediumGrey), // Alt çizgi
-              SettingsRowWidget(title: "Account History", icon: Icon(Icons.file_present_outlined,),targetPage: LanguagePage()),
+              SettingsRowWidget(title: localeManager.translate("accountHistory"), icon: Icon(Icons.file_present_outlined,),targetPage: LanguagePage()),
               Divider(color: AColors.mediumGrey), // Alt çizgi
-              SettingsRowWidget(title: "Invite Your Friends", icon: Icon(Icons.mail_outline,),targetPage: LanguagePage()),
+              SettingsRowWidget(title: localeManager.translate("inviteYourFriends"), icon: Icon(Icons.mail_outline,),targetPage: LanguagePage()),
               Divider(color: AColors.mediumGrey), // Alt çizgi
               SettingsRowWidget(title: "Miles&Smiles", icon: Icon(Icons.play_circle_filled_outlined,),targetPage: LanguagePage()),
               Divider(color: AColors.mediumGrey), // Alt çizgi
-              SettingsRowWidget(title: "EnterStarCode", icon: Icon(Icons.star_border,),targetPage: LanguagePage()),
+              SettingsRowWidget(title: localeManager.translate("enterStarCode"), icon: Icon(Icons.star_border,),targetPage: LanguagePage()),
               Divider(color: AColors.mediumGrey), // Alt çizgi
-              SettingsRowWidget(title: "Garmin", icon: Icon(Icons.mobile_friendly_outlined,),targetPage: LanguagePage()),
-              Divider(color: AColors.mediumGrey), // Alt çizgi
-              SizedBox(height: 24,),
-              SettingsTitleRow(title: "Notification Preferences"),
-              SettingsRowWidget(title: "Email & SMS & Notification", icon: Icon(Icons.mail_outline,),targetPage: LanguagePage()),
+              SettingsRowWidget(title: localeManager.translate("garmin"), icon: Icon(Icons.mobile_friendly_outlined,),targetPage: LanguagePage()),
               Divider(color: AColors.mediumGrey), // Alt çizgi
               SizedBox(height: 24,),
-              SettingsTitleRow(title: "Language Preferences"),
-              SettingsRowWidget(title: "Change Language", icon: Icon(Icons.sort_by_alpha_outlined,), targetPage: LanguagePage(),),
+              SettingsTitleRow(title: localeManager.translate("notificationPreferences")),
+              SettingsRowWidget(title: localeManager.translate("email&SMS&Notification"), icon: Icon(Icons.mail_outline,),targetPage: LanguagePage()),
               Divider(color: AColors.mediumGrey), // Alt çizgi
               SizedBox(height: 24,),
-              SettingsTitleRow(title: "Theme Preferences"),
-              SettingsRowWithSwitchButtonWidget(title: "Change Theme", icon: Icon(Icons.color_lens_outlined,),),
+              SettingsTitleRow(title: localeManager.translate("languagePreferences")),
+              SettingsRowWidget(title: localeManager.translate("changeLanguage"), icon: Icon(Icons.sort_by_alpha_outlined,), targetPage: LanguagePage(),),
+              Divider(color: AColors.mediumGrey), // Alt çizgi
+              SizedBox(height: 24,),
+              SettingsTitleRow(title: localeManager.translate("themePreferences")),
+              SettingsRowWithSwitchButtonWidget(title: localeManager.translate("changeTheme"), icon: Icon(Icons.color_lens_outlined,),),
               Divider(color: AColors.mediumGrey), // Alt çizgi
               SizedBox(height: 24,),
               SettingsTitleRow(title: "F.A.Q"),
-              SettingsRowWidget(title: "Frequently Asked Questions", icon: Icon(Icons.help_outline,),targetPage: LanguagePage()),
+              SettingsRowWidget(title: localeManager.translate("frequentlyAskedQuestions"), icon: Icon(Icons.help_outline,),targetPage: LanguagePage()),
               Divider(color: AColors.mediumGrey), // Alt çizgi
               SizedBox(height: 24,),
-              SettingsTitleRow(title: "Contact Us"),
-              SettingsRowWidget(title: "Contact Form", icon: Icon(Icons.mail_outline,),targetPage: LanguagePage()),
+              SettingsTitleRow(title: localeManager.translate("contactUs")),
+              SettingsRowWidget(title: localeManager.translate("contactForm"), icon: Icon(Icons.mail_outline,),targetPage: LanguagePage()),
               Divider(color: AColors.mediumGrey), // Alt çizgi
-              SettingsRowWidget(title: "Starbucks Assitant", icon: Icon(Icons.chat_bubble_outline,),targetPage: LanguagePage()),
+              SettingsRowWidget(title: localeManager.translate("starbucksAssistant"), icon: Icon(Icons.chat_bubble_outline,),targetPage: LanguagePage()),
               Divider(color: AColors.mediumGrey), // Alt çizgi
               SizedBox(height: 24,),
-              SettingsTitleRow(title: "Policies"),
-              SettingsRowWidget(title: "Privacy Note", icon: Icon(Icons.handshake_outlined,),targetPage: LanguagePage()),
+              SettingsTitleRow(title: localeManager.translate("policies")),
+              SettingsRowWidget(title: localeManager.translate("privacyNote"), icon: Icon(Icons.handshake_outlined,),targetPage: LanguagePage()),
               Divider(color: AColors.mediumGrey), // Alt çizgi
-              SettingsRowWidget(title: "Personal Data Information Notice", icon: Icon(Icons.info_outline,),targetPage: LanguagePage()),
+              SettingsRowWidget(title: localeManager.translate("personalDataInformationNotice"), icon: Icon(Icons.info_outline,),targetPage: LanguagePage()),
               Divider(color: AColors.mediumGrey), // Alt çizgi
-              SettingsRowWidget(title: "Commercial Information Text", icon: Icon(Icons.mail_outline,),targetPage: LanguagePage()),
+              SettingsRowWidget(title: localeManager.translate("commercialInformationText"), icon: Icon(Icons.mail_outline,),targetPage: LanguagePage()),
               Divider(color: AColors.mediumGrey), // Alt çizgi
               SizedBox(height: 24,),
               Container(
@@ -112,7 +112,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AColors.secondaryGreen),
-                  child: Text("SIGN OUT",style: TextStyle(
+                  child: Text(localeManager.translate("signOut"),style: TextStyle(
                     fontSize: 18,
                     color: AColors.white,
                   ),),
@@ -144,6 +144,7 @@ class SettingsProfileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthenticationModel _authModel = AuthenticationModel();
+    final localeManager = Provider.of<LocaleManager>(context);
     return Container(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -162,7 +163,7 @@ class SettingsProfileWidget extends StatelessWidget {
               ),
               SizedBox(height: 8), // CircleAvatar ile yazı arasında boşluk
               Text(
-                "Upload",
+                localeManager.translate("upload"),
                 style: TextStyle(
                   fontSize: 12, // Yazı boyutu
                   fontWeight: FontWeight.normal, // Yazı kalınlığı

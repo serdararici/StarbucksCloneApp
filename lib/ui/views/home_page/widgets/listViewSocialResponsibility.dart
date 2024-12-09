@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
-
 import '../../../../constants/colors.dart';
+import '../../../../data/entity/socialResponsibility.dart';
 
 
 class ListViewSocialResponsibility extends StatefulWidget {
+  final List<SocialResponsibility> socialResponsibilityItems;
+
+  const ListViewSocialResponsibility({Key? key, required this.socialResponsibilityItems})
+      : super(key: key);
+
   @override
   _ListViewSocialResponsibilityState createState() =>
-      _ListViewSocialResponsibilityState();
+      _ListViewSocialResponsibilityState(
+        socialResponsibilityItems: socialResponsibilityItems,
+      );
 }
 
-class _ListViewSocialResponsibilityState extends State<ListViewSocialResponsibility> {
+class _ListViewSocialResponsibilityState
+    extends State<ListViewSocialResponsibility> {
   final ScrollController _scrollController = ScrollController();
+  final List<SocialResponsibility> socialResponsibilityItems;
   int _currentPage = 0;
   final double _itemWidth = 350;
   final double _separatorWidth = 10;
-  final int _itemCount = 10; // Örnek: item sayısını burada belirtiyoruz
-  late int _visibleDots;  // _visibleDots başlangıçta null olacak
+  late int _visibleDots;
+
+  _ListViewSocialResponsibilityState({required this.socialResponsibilityItems});
 
   @override
   void initState() {
@@ -28,33 +38,50 @@ class _ListViewSocialResponsibilityState extends State<ListViewSocialResponsibil
       });
     });
 
-    // _visibleDots değerini burada hesaplıyoruz
-    _visibleDots = _itemCount > 5 ? 5 : _itemCount;
+    _visibleDots = socialResponsibilityItems.length > 5 ? 5 : socialResponsibilityItems.length;
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // ListView
+        // Social Responsibility List
         Container(
           height: 350,
           child: ListView.separated(
             controller: _scrollController,
             scrollDirection: Axis.horizontal,
             separatorBuilder: (context, index) => const SizedBox(width: 10),
-            itemCount: _itemCount,
+            itemCount: socialResponsibilityItems.length,
             itemBuilder: (context, index) {
+              final item = socialResponsibilityItems[index];
               return Container(
                 width: _itemWidth,
                 decoration: BoxDecoration(
-                  color: AColors.darkGreen,
+                  color: Colors.transparent,
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Center(
-                  child: Text(
-                    "Item ${index + 1}",
-                    style: const TextStyle(color: Colors.white),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.network(
+                    item.iconPath,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                              (loadingProgress.expectedTotalBytes ?? 1)
+                              : null,
+                        ),
+                      );
+                    },
+                    errorBuilder: (context, error, stackTrace) =>
+                    const Center(
+                      child: Icon(Icons.error, size: 50, color: Colors.red),
+                    ),
                   ),
                 ),
               );
@@ -66,16 +93,14 @@ class _ListViewSocialResponsibilityState extends State<ListViewSocialResponsibil
         // Dots
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(_itemCount, (index) {
-            // Boyut hesaplama
+          children: List.generate(socialResponsibilityItems.length, (index) {
             int middleStart = _currentPage - (_visibleDots ~/ 2);
             int middleEnd = _currentPage + (_visibleDots ~/ 2);
 
             double size;
             if (index >= middleStart && index <= middleEnd) {
-              size = 8.0; // Normal boyutlu nokta
+              size = 8.0;
             } else {
-              // Görünmeyen noktalar küçülerek animasyonlanır
               int distance = (index - _currentPage).abs();
               size = 12.0 - (distance * 3.0).clamp(4.0, 6.0);
             }

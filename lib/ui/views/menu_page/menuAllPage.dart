@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:starbucks_clone_app/constants/colors.dart';
+import 'package:starbucks_clone_app/core/localization/localization_manager.dart';
 import 'package:starbucks_clone_app/ui/views/menu_page/categoryDetailsPage.dart';
 import 'package:starbucks_clone_app/ui/views/menu_page/pageViewMenuAll.dart';
 
@@ -15,6 +17,7 @@ class MenuAllPage extends StatefulWidget {
 class _MenuAllPageState extends State<MenuAllPage> {
   @override
   Widget build(BuildContext context) {
+    final localeManager = Provider.of<LocaleManager>(context);
 
     List<MenuCategory> drinksCategories = categories.where((category) => category.type == "drinks").toList();
     List<MenuCategory> foodsCategories = categories.where((category) => category.type == "foods").toList();
@@ -38,19 +41,19 @@ class _MenuAllPageState extends State<MenuAllPage> {
                   children: [
                     PageViewMenuAll(),
                     SizedBox(height: 46),
-                    MenuTitleRow(title: "Drinks"),
+                    MenuTitleRow(title: localeManager.translate("drinks")),
                     SizedBox(height: 15),
                     CategoryListWidget(categoryList: drinksCategories),
                     SizedBox(height: 15),
-                    MenuTitleRow(title: "Foods"),
+                    MenuTitleRow(title: localeManager.translate("foods")),
                     SizedBox(height: 15),
                     CategoryListWidget(categoryList: foodsCategories),
                     SizedBox(height: 15),
-                    MenuTitleRow(title: "Coffee At Home"),
+                    MenuTitleRow(title: localeManager.translate("coffeeAtHome")),
                     SizedBox(height: 15),
                     CategoryListWidget(categoryList: coffeeAtHomeCategories),
                     SizedBox(height: 15),
-                    MenuTitleRow(title: "Merchandise"),
+                    MenuTitleRow(title: localeManager.translate("merchandise")),
                     SizedBox(height: 15),
                     CategoryListWidget(categoryList: merchandiseCategories),
                     SizedBox(height: 20,)

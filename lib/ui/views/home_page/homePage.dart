@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:starbucks_clone_app/CarouselWithDots.dart';
+import 'package:starbucks_clone_app/data/entity/campaigns.dart';
+import 'package:starbucks_clone_app/data/entity/brandCollaborations.dart';
+import 'package:starbucks_clone_app/data/entity/socialResponsibility.dart';
 import 'package:starbucks_clone_app/ui/views/home_page/widgets/listViewBrandCollaborations.dart';
 import 'package:starbucks_clone_app/constants/colors.dart';
 import 'package:starbucks_clone_app/ui/views/home_page/widgets/listViewCampaigns.dart';
 import 'package:starbucks_clone_app/ui/views/home_page/widgets/listViewSocialResponsibility.dart';
 import 'package:starbucks_clone_app/ui/views/home_page/widgets/semiCircularChart.dart';
 
+import '../../../core/localization/localization_manager.dart';
+import '../../../core/theme/theme_manager.dart';
 import '../settings_page/settings_page.dart';
 
 class Homepage extends StatefulWidget {
@@ -16,6 +22,9 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
+    final themeManager = Provider.of<ThemeManager>(context);
+    final localeManager = Provider.of<LocaleManager>(context);
+
     List<Map<String, String>> items = [
       {'title': 'Toffee \n Nut Latte', 'iconPath': 'https://www.digitalassets.starbucks.eu/sites/starbucks-medialibrary/files/SBX-MOP-1500x1500-Toffee-Nut-Latte.jpeg'},
       {'title': 'Toffee Nut \n Cream Cold \n Brew', 'iconPath': 'https://www.starbucks.co.uk/_next/image?url=https%3A%2F%2Fwww.digitalassets.starbucks.eu%2Fsites%2Fstarbucks-medialibrary%2Ffiles%2FToffee-Nut-Cream-Cold-Brew-.jpeg&w=3840&q=75'},
@@ -62,7 +71,7 @@ class _HomepageState extends State<Homepage> {
                         children: [
                           _cardAddMoney(context),
                           SizedBox(height: 30,),
-                          ListViewTitleRow(title: 'Have you tried these?'),
+                          ListViewTitleRow(title: localeManager.translate("haveYouTriedThese")),
                           SizedBox(height: 10,),
                           Container(
                             height: 150,
@@ -104,17 +113,17 @@ class _HomepageState extends State<Homepage> {
                             ),
                           ),
                           SizedBox(height: 20,),
-                          ListViewTitleRow(title: 'Campaigns',),
+                          ListViewTitleRow(title: localeManager.translate("campaigns"),),
                           SizedBox(height: 15,),
-                          ListViewCampaigns(),
+                          ListViewCampaigns(campaignsItems:campaignsItems,),
                           SizedBox(height: 60,),
-                          ListViewTitleRow(title: 'Brand Collaborations'),
+                          ListViewTitleRow(title: localeManager.translate("brandCollaborations")),
                           SizedBox(height: 15,),
-                          ListViewBrandCollaborations(),
+                          ListViewBrandCollaborations(brandCollaborationsItems: brandCollaborationsItems),
                           SizedBox(height: 60,),
-                          ListViewTitleRow(title: 'Social Responsibility'),
+                          ListViewTitleRow(title: localeManager.translate("socialResponsibility")),
                           SizedBox(height: 15,),
-                          ListViewSocialResponsibility(),
+                          ListViewSocialResponsibility(socialResponsibilityItems: socialResponsibilityItems,),
                           SizedBox(height: 60,),
                           _cardStarbucksDelivery(),
 
@@ -319,6 +328,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   Card _cardAddMoney(BuildContext context) {
+    final localeManager = Provider.of<LocaleManager>(context);
     return Card(
       //margin: EdgeInsets.only(left: 10, right: 10),
       color: Colors.white,
@@ -341,7 +351,7 @@ class _HomepageState extends State<Homepage> {
                 borderRadius: BorderRadius.circular(25),
               ),
               child: Text(
-                "GREEN MEMBER",
+                localeManager.translate("greenMember"),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -352,7 +362,7 @@ class _HomepageState extends State<Homepage> {
             ),
             SizedBox(height: 10,),
             Text(
-              "Identify your credit/debit card to add money to\nyour account",
+              localeManager.translate("greenMemberMessage"),
               style: TextStyle(
                 fontSize: 12,
               ),
@@ -374,7 +384,7 @@ class _HomepageState extends State<Homepage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Account balance",
+                    Text(localeManager.translate("accountBalance"),
                       style: TextStyle(
                         fontSize: 10,
                       ),
@@ -407,7 +417,7 @@ class _HomepageState extends State<Homepage> {
               onPressed: (){},
               child: Text(
                 textAlign: TextAlign.center,
-                "ADD MONEY",
+                localeManager.translate("addMoney"),
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold
@@ -421,6 +431,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   Widget _topBody() {
+    final localeManager = Provider.of<LocaleManager>(context);
     return Column(
       children: [
         Row(
@@ -434,11 +445,13 @@ class _HomepageState extends State<Homepage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Star Balance",
+                  Text(localeManager.translate("starBalance"),
                     style: TextStyle(
                       color: AColors.lightOrange,
-                      fontSize: 14,
+                      fontSize: 14
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 15,),
                   Row(
@@ -457,12 +470,12 @@ class _HomepageState extends State<Homepage> {
                     ],
                   ),
                   SizedBox(height: 5,),
-                  Text("1 reward drink",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                    ),
-                  ),
+                  Text(
+                    "1 ${localeManager.translate("rewardDrink")}",
+                    style: TextStyle(color: Colors.white, fontSize: 12),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  )
                 ],
               ),
             ),
@@ -474,7 +487,7 @@ class _HomepageState extends State<Homepage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text("Badges",
+                  Text(localeManager.translate("badges"),
                     style: TextStyle(
                       color: AColors.lightOrange,
                       fontSize: 14,
@@ -502,10 +515,11 @@ class _HomepageState extends State<Homepage> {
   }
 
   AppBar _AppBar() {
+    final localeManager = Provider.of<LocaleManager>(context);
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      title: Text("Good evening Serdar ☕",
+      title: Text(localeManager.translate("goodEvening") + " Serdar ☕",
         style: TextStyle(
             color: Colors.white,
             fontSize: 16,
@@ -545,6 +559,7 @@ class ListViewTitleRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localeManager = Provider.of<LocaleManager>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -563,7 +578,7 @@ class ListViewTitleRow extends StatelessWidget {
 
               },
               child: Text(
-                "All",
+                localeManager.translate("all"),
                 style: TextStyle(
                   color: AColors.primaryGreen,
                   fontSize: 16,
