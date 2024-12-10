@@ -1,5 +1,7 @@
 ![StarbucksCloneApp-Preview](https://github.com/serdararici/StarbucksCloneApp/blob/master/Preview.JPG)
 
+## Check out the demo on YouTube: [Starbucks Clone Demo](https://youtube.com/shorts/_aIn7r5IVJE?feature=share)
+
 ### EN
 # Flutter Starbucks Clone Application
 
